@@ -7,4 +7,4 @@ It utilizes regular expression capture groups to allow the user to specify custo
 
 ## Command Line Format
 
-ruby src/main/run_generation.rb [-f|-b] [INPUT_FILE] [OUTPUT_FILE] [TEMPLATE_FILE]
+ruby src/main/run_generator.rb [-f|-b] [INPUT_FILE] [OUTPUT_FILE] [TEMPLATE_FILE]
