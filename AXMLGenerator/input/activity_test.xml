@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="test.MyActivity"
+    tools:context="test.AlchemyTestActivity"
     android:weightSum="1"><![CDATA[
 
     TextView android:text="@string/hello_world" android:layout_width="wrap_content"
@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Text"
-            android:id="@+id/textViewA"/>
+            android:text="00:00"
+            android:id="@+id/recordingTimeStamp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Text"
-            android:id="@+id/textViewB"
+            android:text="Transcript Text"
+            android:id="@+id/transcriptTextView"
             android:lines="5"
             android:nestedScrollingEnabled="true" />
     </LinearLayout>
@@ -53,8 +53,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Text"
-            android:id="@+id/textViewC"
+            android:text="Results"
+            android:id="@+id/resultsTextView"
             android:lines="5"
             android:nestedScrollingEnabled="true" />
 
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/spinnerA" />
+        android:id="@+id/loadingSpinner" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -76,17 +76,18 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test"
-            android:id="@+id/toggleButtonA"
-            android:textOn="On"
-            android:textOff="Off" />
+            android:text="New ToggleButton"
+            android:id="@+id/recordButton"
+            android:textOn="Stop"
+            android:textOff="Record" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test"
-            android:id="@+id/buttonA"
+            android:text="Analyze"
+            android:id="@+id/analyzeButton" 
 			android:onClick="testClickMethod"/>
     </LinearLayout>
 
 </LinearLayout>
+
