@@ -72,9 +72,8 @@ class AXMLReader < XMLReader
 	
 	#Returns a list of control events to be handled by the the class
 	def event_list
-		return attributes_by_name 'android:onClick'
+		return attributes_by_name "android:onClick"
 	end
-	
 	
 	#Parses a text file for android xml element names (to determine the names of valid controls)
 	def parse_android_control_file(filename)
@@ -86,9 +85,8 @@ class AXMLReader < XMLReader
 		
 		contents = []
 		begin
-			puts "Loading: " + filename
 			if File.exists? filename then
-				puts "File exists"
+				puts "Loading Valid Android Elements..."
 				file = File.open(filename, "r").each_line do |line|
 					contents += line.gsub(/\s+/, "").split(",")
 				end
@@ -98,7 +96,7 @@ class AXMLReader < XMLReader
 			file.close unless file.nil?
 		end
 		
-		puts "Done Reading file."
+		puts ''
 		return contents
 	end
 	

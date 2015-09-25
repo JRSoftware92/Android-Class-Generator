@@ -15,17 +15,13 @@ class ActivityGenerator < TemplateGenerator
 	end
 	
 	#Loads the layout file to generate the class from
-	def load_input_file(filename)
-	
-		puts "Loading input file: " + filename
-	
+	def load_input_file(filename)	
 		#Returns if filename if invalid
 		if filename.nil? then
 			puts "Invalid filename provided."
 			return 0
 		end
 
-		puts "Matching class name and layout name..."
 		#Extracts the name of the class from the filename
 		arr = filename.split "_"
 		if !arr.nil? && arr.size > 1 then
@@ -35,26 +31,19 @@ class ActivityGenerator < TemplateGenerator
 				@class_name = temp[1].capitalize
 			end
 			@layout_name = arr[1].gsub("_", "").gsub(".xml", "")
-			
-			puts "Class name: " + @class_name
-			puts "Layout name: " + @layout_name
 		else
 			puts "Invalid layout file name: " + filename
 		end
-		
-		puts "Reading input file: " + filename
+
 		#Reads the xml of the input file
 		reader = AXMLReader.new CONTROL_FILE
 		reader.read filename
-		
-		puts "Retrieving ID Mappings..."
+
 		#Retrieves a map of element ids to their corresponding class
 		@id_map = reader.id_type_map
 		@event_list = reader.event_list
 		
 		@success = 1
-		
-		puts "Input File Loaded."
 	end
 	
 	#Generates an output with the desired filename
@@ -68,8 +57,6 @@ class ActivityGenerator < TemplateGenerator
 			put('INITIALIZATION', build_initialization)
 			put('EVENT_METHODS', build_event_methods)
 		end
-		
-		puts "Generating Output File: " + filename
 		
 		#Writes the adjusted contents to a file
 		write_contents filename

@@ -49,8 +49,8 @@ class TemplateGenerator
 	
 	#Writes the contents of the generator to the given file
 	def write_contents(filename = "output.txt")
-		puts "Writing file: " + filename
 		begin
+			puts "Writing contents to file: " + filename
 			file = File.open(filename, 'w')
 			size = line_count
 				
@@ -79,13 +79,12 @@ class TemplateGenerator
 				file.puts @contents[i]
 			end
 			
-			puts "Contents written to file: " + filename
 		ensure
 			puts "Closing output file: " + filename
 			file.close unless file.nil?
 		end
 		
-		puts "Done Writing Output File."
+		puts ''
 	end
 	
 	#Reads the template file into an array of strings
@@ -104,8 +103,8 @@ class TemplateGenerator
 		end
 		
 		begin
-			puts "Loading: " + filename
 			if File.exists? filename then
+				puts "Loading Template: " + filename
 				file = File.open(filename, "r").each_line do |line|
 					@contents.push line
 				end
@@ -113,7 +112,6 @@ class TemplateGenerator
 			
 			size = line_count
 			
-			puts "Detecting keys..."
 			#Iterates over each line, remembering the line number
 			for i in 0..size-1
 				#Extracts the keys from each line
@@ -136,7 +134,7 @@ class TemplateGenerator
 			file.close unless file.nil?
 		end
 		
-		puts "Done Loading Template file."
+		puts ''
 	end
 	
 	def print_debug

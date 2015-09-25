@@ -6,12 +6,12 @@ import android.view.Button;
 
 public class Activity extends SupportActivity {
 
-	TextView recordingTimeStamp = null;
-	TextView transcriptTextView = null;
-	TextView resultsTextView = null;
-	ProgressBar loadingSpinner = null;
-	ToggleButton recordButton = null;
-	Button analyzeButton = null;
+	TextView textViewA = null;
+	TextView textViewB = null;
+	TextView textViewC = null;
+	ProgressBar spinnerA = null;
+	ToggleButton toggleButtonA = null;
+	Button buttonA = null;
 
 
 	@Override
@@ -26,12 +26,12 @@ public class Activity extends SupportActivity {
 
 	@Override
 	public void initializeDefaultActivity(){
-		recordingTimeStamp = (TextView) findViewById(R.id.recordingTimeStamp);
-		transcriptTextView = (TextView) findViewById(R.id.transcriptTextView);
-		resultsTextView = (TextView) findViewById(R.id.resultsTextView);
-		loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
-		recordButton = (ToggleButton) findViewById(R.id.recordButton);
-		analyzeButton = (Button) findViewById(R.id.analyzeButton);
+		textViewA = (TextView) findViewById(R.id.textViewA);
+		textViewB = (TextView) findViewById(R.id.textViewB);
+		textViewC = (TextView) findViewById(R.id.textViewC);
+		spinnerA = (ProgressBar) findViewById(R.id.spinnerA);
+		toggleButtonA = (ToggleButton) findViewById(R.id.toggleButtonA);
+		buttonA = (Button) findViewById(R.id.buttonA);
 
 	}
 
@@ -40,5 +40,8 @@ public class Activity extends SupportActivity {
 		/* TODO */
 	}
 	
+	public void testClickMethod(View v){
+		/* TODO */
+	}
 
 }
