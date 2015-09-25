@@ -1,0 +1,2 @@
+input/activity_test.xml:output/activity_test.java:templates/ActivityTemplate.java
+input/activity_test2.xml:output/activity_test2.java:templates/ActivityTemplate.java

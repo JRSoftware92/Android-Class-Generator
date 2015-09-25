@@ -1,0 +1,10 @@
+View, Button, ToggleButton, EditText, 
+AutoCompleteTextView, CheckBox, RadioGroup,
+RadioButton, Spinner, DatePicker, TimePicker,
+RelativeLayout, LinearLayout, GridLayout, 
+TableLayout, ListView, ImageButton, TextureView,
+ProgressBar, RatingBar, AnalogClock, KeyboardView,
+AbsoluteLayout, ImageView, TextView, GridView, 
+FrameLayout, Fragment, ExpandableListView, 
+Chronometer, CalendarView, BitmapDrawable, Toolbar,
+Slider
