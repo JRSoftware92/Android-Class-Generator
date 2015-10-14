@@ -2,7 +2,6 @@ require_relative 'template_generator.rb'
 require_relative 'android_xml_reader.rb'
 
 #Class for Generating Android Activity class files from Android XML Layouts
-#FIXME Regex Capture Group not behaving as expected.
 class ActivityGenerator < TemplateGenerator
 
 	PLACEHOLDER_REGEX="~#~?(.+)~#~"
