@@ -6,7 +6,8 @@ require_relative 'sqlite_model.rb'
 class ASqliteReader < SqliteParser
 	include Sqlite
 	
-	DDL_REGEX = /[a-zA-Z0-9_]+\({1}(?:[\s\,]*[a-zA-Z]+\s*)+(?:\)\;){1}/
+	#DDL_REGEX = /[a-zA-Z0-9_]+\({1}(?:[\s\,]*[a-zA-Z]+\s*)+(?:\)\;){1}/
+	TABLE_REGEX = /(?<name>[a-zA-Z0-9_]+)\({1}(?<parameters>(?:[\s\,]*[a-zA-Z]+\s*)+)(?:\)\;){1}/
 
 	def initialize
 		super
@@ -31,8 +32,28 @@ class ASqliteReader < SqliteParser
 		end
 	end
 	
+	#Extracts table declarations from the given line and extracts the data as table objects into the local table array
 	def extract_table_from(line)
-		#TODO
+		matchdata = line.scan(TABLE_REGEX)
+		matchdata.each do |name, param_str|
+			parameters = extract_table_parameters_from param_str
+			table = Sqlite::Table.new(name, parameters)
+			@tables << table
+		end
+	end
+	
+	#Extracts the table parameters from a given string and outputs them as an array
+	def extract_table_parameters_from(str)
+		if str.nil? || str.size < 1 then
+			return []
+		end
+		
+		if !str.include? ',' then
+			return str
+		else
+			return str.split ','
+		end
+		
 	end
 	
 	#Extracts a Sqlite Query object from the sql string
@@ -151,6 +172,8 @@ class ASqliteReader < SqliteParser
 			return []
 		end
 	
+		output = []
+		
 		objects.each do |object|
 			output << object.to_xml
 		end
@@ -159,6 +182,14 @@ class ASqliteReader < SqliteParser
 	end
 	
 	def print_debug
+		puts 'Tables: '
+		temp = @tables
+		if !temp.nil? then
+			temp.each do |table|
+				table.print_debug
+			end
+		end
+		
 		puts 'Queries: '
 		temp = queries
 		if !temp.nil? then

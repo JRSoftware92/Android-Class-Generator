@@ -10,6 +10,16 @@ class SqlClassGenerator < TemplateGenerator
 	def initialize
 		super(PLACEHOLDER_REGEX)
 		@success = 0
+		set_database_name
+		set_database_version
+	end
+	
+	def set_database_name(dbName = 'app_db')
+		@db_name = dbName
+	end
+	
+	def set_database_version(dbVer = 1)
+		@db_version = dbVer
 	end
 	
 	#Loads the ddl file to generate the class from
@@ -55,6 +65,32 @@ class SqlClassGenerator < TemplateGenerator
 		puts "File generated: " + filename
 	end
 	
+	def generate_helper_class(classname = 'output')
+		if @success > 0 then
+			puts 'Creating Substitution Mappings'
+			put('CLASS_NAME', classname)
+			put('DATABASE_NAME', @db_name)
+			put('DATABASE_VERSION', @db_version)
+		end
+		
+		#Writes the adjusted contents to the appropriate files
+		write_contents filename
+		puts "File generated: " + filename + '.java'
+		
+	end
+	
+	def generate_adapter_class(classname = 'output')
+		if @success > 0 then
+			puts 'Creating Substitution Mappings'
+			put('CLASS_NAME', classname)
+		end
+		
+		#Writes the adjusted contents to the appropriate files
+		write_contents filename
+		puts "File generated: " + filename + '.java'
+		
+	end
+	
 	#Build String of XML Arrays
 	def build_xml_arrays
 		output = []
@@ -63,7 +99,7 @@ class SqlClassGenerator < TemplateGenerator
 		if tables.size > 0 then
 			output << '<array id="array_queries_table_create">'
 			tables.each do |table|
-				output << table.to_xml
+				output << table
 			end
 			output << '</array>'
 		end

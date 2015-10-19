@@ -1,0 +1,17 @@
+<template_objects>
+	<template_object name="Sqlite_Table">
+		<string name="name">Employees</string>
+		<string name="parameters">INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT POSITION</string>
+	</template_object>
+
+	<template_object name="Sqlite_Table">
+		<string name="name">Customers</string>
+		<string name="parameters">INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT DATA, TEXT PURCHASE_ID</string>
+	</template_object>
+
+	<template_object name="Sqlite_Table">
+		<string name="name">Sales</string>
+		<string name="parameters">INTEGER ID, INTEGER EMP_ID, REAL MONEY, TEXT DATE</string>
+	</template_object>
+
+</template_objects>

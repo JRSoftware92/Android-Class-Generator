@@ -65,7 +65,7 @@ class XMLReader
 	
 	#Returns an array of children of the given parent node
 	def children_of(node)
-		return is_valid(node) ? node.children.to_a : nil
+		return is_valid(node) ? node.children : nil
 	end
 	
 	#Returns the attribute keys of the current node
@@ -193,7 +193,7 @@ class XMLReader
 		puts "Attributes: \n" + attributes.to_s
 		print_divider
 		
-		puts "Children: \n" + children.to_s
+		puts "Children: \n" + children.to_xml
 		print_divider
 	end
 	

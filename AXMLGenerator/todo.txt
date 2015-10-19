@@ -1,0 +1,59 @@
+- Rename Project: RegeXML Template Generation
+
+- Further decouple template generation
+	- Sub templates for value substitution
+	- Config file for regex's, batches, etc
+- Integrate 'Move to' functionality
+	- Generate full packages
+	- If file is not a template, but needed
+		- Copy into package
+- Use Batch files to handle batch commands...like a smart person.
+- Use Regex Named Capture Groups to universally parse files for data!!!
+	- GENERIC SCANNER? TOO GOOD TO BE TRUE?!
+		- May not be ideal for reading xml layout files.
+	- Parse into below xml example.
+		- string name --> the key of the capture group (needs to be extracted from the regex string)
+		- xml value --> the matched value
+		- Use config file to contain regex's for each template object mapped to object 'class' name
+- Incorporate logic for repeated sections in templates
+	- Bordered, named template pattern.
+	- Specify name and input parameters in 
+		top border
+		
+		Example:
+		
+		/////////////////////////Begin_Repeatable_Section: TEMPLATE_FUNCTION/////////////////////////////
+		
+		public void ~!~FUNCTION_NAME~!~(~!~PARAMETERS~!~){
+			//FUNCTIONALITY
+		}
+		
+		/////////////////////////End_Repeatable_Section: TEMPLATE_FUNCTION///////////////////
+		
+	- Use Generated input file of parameter names matched to values. (Xml?)
+	
+		Example:
+		
+			<!-- template_object name links data to the section it belongs to. Does not need to be ordered. -->
+			<template_object name="TEMPLATE_FUNCTION">
+				<string name="FUNCTION_NAME">Test Function 1</template_attribute>
+				<string name="PARAMETERS">int x, string y</template_attribute>
+			</template_object>
+			
+			<template_object name="TEMPLATE_FUNCTION">
+				<string name="FUNCTION_NAME">Test Function 2</template_attribute>
+				<string name="PARAMETERS">int x, string y, float z</template_attribute>
+			</template_object>
+		
+	- Will need: (consider refactoring for file pointers --> Better than slurping the file)
+		- Standard Reader-Writer interface for generated xml.
+			- Needs Overwrite/append mode.
+				- .open_output_file, .close_output_file
+				- .add_template_attribute(key, value)
+				- .commit_template_object, .new_template_object
+		- Standard xml based template generation class (take in generated input file universally)
+			- .read_object_file
+			- .read_template_file
+			- .write_output_file
+			- Must be able to handle repeatable sections (load in the section, repeat it as per the object array)
+		

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<array id="array_queries_table_create">
+<string id="sql_create_Employees">CREATE TABLE Employees(INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT POSITION);</string>
+</array>
+<array id="array_queries_select">
+<string id="query_a"> SELECT SECTOR, TYPE, ID, NAME, COUNT(*) AS NUMBER FROM F0101 INNER JOIN F0006 ON F0006.ID = F0101.ID WHERE ID=? OR SECTOR = ? OR TYPE = ? GROUP BY SECTOR HAVING NUMBER > ? ORDER BY SECTOR
+</string>
+<string id="query_c"> SELECT SECTOR, TYPE, ID, NAME, COUNT(*) AS NUMBER FROM F0101 INNER JOIN F0006 ON F0006.ID = F0101.ID WHERE ID=? OR SECTOR = ? OR TYPE = ? GROUP BY SECTOR HAVING NUMBER > ? ORDER BY SECTOR
+</string>
+</array>
+
+</resources>

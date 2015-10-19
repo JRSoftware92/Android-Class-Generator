@@ -13,7 +13,11 @@ module Sqlite
 		end
 	
 		def to_sql
-			return name + '(' + @columns.join(',') + ');'
+			return @name + '(' + @columns.join(',') + ');'
+		end
+
+		def to_xml
+			return create_statement_xml
 		end
 		
 		def create_statement_sql
@@ -21,7 +25,7 @@ module Sqlite
 		end
 		
 		def create_statement_xml
-			return '<string id="sql_create_' + name + '">' + create_statement_sql + '</string>'
+			return '<string id="sql_create_' + @name + '">' + create_statement_sql + '</string>'
 		end
 		
 		def print_debug
