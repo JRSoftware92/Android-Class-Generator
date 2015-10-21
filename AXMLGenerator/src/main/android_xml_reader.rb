@@ -1,6 +1,7 @@
 require_relative 'xml_reader.rb'
 
 #Class for reading Android XML Layout files
+#TODO Update to output generic xml template data file (or into generic txt format which can be parsed by xml template generator!!!)
 class AXMLReader < XMLReader
 	
 	def initialize(filename)
@@ -74,29 +75,72 @@ class AXMLReader < XMLReader
 	def event_list
 		return attributes_by_name "android:onClick"
 	end
+
+	def generate_layout_map_file(filename)
+		#If the file name is invalid, exit prematurely
+		if filename.nil? || filename == '' then
+			puts 'Invalid filename provided.'
+			return -1
+		end
+		
+		controls = id_type_map
+		events = event_list
+		
+		begin
+			file = File.open(filename, "w")
+			str = ''
+		
+			controls.each do |id, type|
+				str = 'CONTROL ' + id + '->' + type + "\n"
+				file.write str
+			end
+		
+			events.each do |event|
+				str = 'EVENT ' + event + "\n"
+				file.write str
+			end
+		rescue IOError => e
+			file.close unless file.nil?
+			return 1
+		ensure
+			file.close unless file.nil?
+		end
+		
+		return 0
+	end
 	
 	#Parses a text file for android xml element names (to determine the names of valid controls)
 	def parse_android_control_file(filename)
+	
+		#Remove un-necessary whitespace
+		filename.strip!
+	
 		#If the file name is invalid, exit prematurely
-		if filename == nil || filename == "" then
-			puts "Invalid filename provided."
+		if filename.nil? || filename == '' then
+			puts 'Invalid filename provided.'
 			return 0
 		end
 		
 		contents = []
 		begin
 			if File.exists? filename then
-				puts "Loading Valid Android Elements..."
-				file = File.open(filename, "r").each_line do |line|
-					contents += line.gsub(/\s+/, "").split(",")
+				puts 'Loading Valid Android Elements...'
+				file = File.open(filename, 'r').each_line do |line|
+					contents += line.gsub(/\s+/, '').split(',')
 				end
+			else
+				puts 'File does not exist: ' + filename
 			end
 		ensure
-			puts "Closing File: " + filename
-			file.close unless file.nil?
+			if !file.nil? then
+				puts 'Closing File: ' + filename
+				file.close
+			end
 		end
 		
 		puts ''
+		
+		puts contents.to_s
 		return contents
 	end
 	
@@ -104,7 +148,7 @@ class AXMLReader < XMLReader
 	def print_debug_android
 	
 		print_divider
-		puts "Valid Control Types: "
+		puts 'Valid Control Types: '
 		puts @valid_controls.to_s
 	
 		print_divider
@@ -124,25 +168,25 @@ class AXMLReader < XMLReader
 		end
 		
 		print_divider 
-		puts "Control by type test (return all buttons): "
+		puts 'Control by type test (return all buttons): '
 		button = elements_by_type "Button"
 		puts button.to_s
 		
 		print_divider 
-		puts "Control Type test (should say button): "
+		puts 'Control Type test (should say button): '
 		puts android_type_of button
 		
 		print_divider
-		puts "Type Map Test (id => type): "
+		puts 'Type Map Test (id => type): '
 		puts id_type_map
 		
 		print_divider
-		puts "On Click Event Test: "
+		puts 'On Click Event Test: '
 		temp = event_list
 		puts temp.to_s
 		
 		print_divider
-		puts "Parent Validity: "
+		puts 'Parent Validity: '
 		puts is_valid
 	end
 	

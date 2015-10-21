@@ -1,17 +1,20 @@
-<template_objects>
-	<template_object name="Sqlite_Table">
-		<string name="name">Employees</string>
-		<string name="parameters">INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT POSITION</string>
-	</template_object>
+<template_data>
+	<template_object_set name="Sqlite_Table">
+		<template_object>
+			<string name="name" value="Employees">
+			<string name="parameters" value="INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT POSITION">
+		</template_object>
 
-	<template_object name="Sqlite_Table">
-		<string name="name">Customers</string>
-		<string name="parameters">INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT DATA, TEXT PURCHASE_ID</string>
-	</template_object>
+		<template_object>
+			<string name="name" value="Customers">
+			<string name="parameters" value="INTEGER ID UNIQUE AUTOINCREMENT, TEXT NAME, TEXT DATA, TEXT PURCHASE_ID">
+		</template_object>
 
-	<template_object name="Sqlite_Table">
-		<string name="name">Sales</string>
-		<string name="parameters">INTEGER ID, INTEGER EMP_ID, REAL MONEY, TEXT DATE</string>
-	</template_object>
+		<template_object>
+			<string name="name" value="Sales">
+			<string name="parameters" value="INTEGER ID, INTEGER EMP_ID, REAL MONEY, TEXT DATE">
+		</template_object>
 
-</template_objects>
+	</template_object_set>
+
+</template_data>

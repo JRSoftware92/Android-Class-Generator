@@ -1,0 +1,7 @@
+CONTROL textViewA->TextView
+CONTROL textViewB->TextView
+CONTROL textViewC->TextView
+CONTROL spinnerA->ProgressBar
+CONTROL toggleButtonA->ToggleButton
+CONTROL buttonA->Button
+EVENT testClickMethod

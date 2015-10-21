@@ -68,6 +68,21 @@ class XMLReader
 		return is_valid(node) ? node.children : nil
 	end
 	
+	#Extract children from an object into an array. Intended for use with Node and NodeSet objects
+	def extract_children_from(obj)
+		if obj.nil? then
+			return []
+		end
+		
+		output = []
+		set = obj.children
+		set.each do |node|
+			output << node
+		end
+		
+		return output
+	end
+	
 	#Returns the attribute keys of the current node
 	def attr_keys
 		return attr_keys_in @current_node

@@ -2,15 +2,16 @@ require_relative 'sqlite_reader.rb'
 require_relative 'sqlite_model.rb'
 
 #Class for reading DDL and DML SQLite files
-#TODO Implement DDL Reading functionality (Columns, Tables)
-class ASqliteReader < SqliteParser
+#TODO Rewrite to export generic xml data for template generation and utilize generic regex parser
+#CAN BE DONE FOR BOTH DDL AND DML
+class ASqliteReader# < SqliteParser
 	include Sqlite
 	
 	#DDL_REGEX = /[a-zA-Z0-9_]+\({1}(?:[\s\,]*[a-zA-Z]+\s*)+(?:\)\;){1}/
 	TABLE_REGEX = /(?<name>[a-zA-Z0-9_]+)\({1}(?<parameters>(?:[\s\,]*[a-zA-Z]+\s*)+)(?:\)\;){1}/
 
 	def initialize
-		super
+		#super
 		@select_queries = []
 		@insert_queries = []
 		@update_queries = []

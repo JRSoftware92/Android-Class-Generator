@@ -1,0 +1,9 @@
+<template_data>
+	<template_object_set name="Template_Data">
+		<template_object>
+			<string name="CLASS_NAME" value="Activity">
+			<string name="DATABASE_NAME" value="test_db">
+			<string name="DATABASE_VERSION" value="1">
+		</template_object>
+	</template_object_set>
+</template_data>

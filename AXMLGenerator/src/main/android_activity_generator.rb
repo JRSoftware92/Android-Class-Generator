@@ -2,14 +2,14 @@ require_relative 'template_generator.rb'
 require_relative 'android_xml_reader.rb'
 
 #Class for Generating Android Activity class files from Android XML Layouts
+#TODO -> Redo to work with xml template generation
 class ActivityGenerator < TemplateGenerator
 
-	PLACEHOLDER_REGEX="~#~?(.+)~#~"
 	FILENAME_REGEX="\w+_\w+\.xml"
 	CONTROL_FILE="res/android_controls.txt"
 
 	def initialize
-		super(PLACEHOLDER_REGEX)
+		super
 		@success = 0
 	end
 	
